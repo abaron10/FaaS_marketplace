@@ -5,6 +5,7 @@
 
 ## Como desplegar la función:
 
+### Por medio de la interfaz:
 #### 1. Dar click en crear nueva función
 <img width="1417" alt="image" src="https://user-images.githubusercontent.com/64280930/156932795-f9b17760-dd96-406b-b471-dac5034fae02.png">
 
@@ -26,6 +27,11 @@
 
 #### 7. Validar creación de función con exito
 <img width="1532" alt="image" src="https://user-images.githubusercontent.com/64280930/156932952-fe4bbdff-4d1b-4ef7-b303-29c4ff2b2e84.png">
+
+### Por medio de la consola:
+```
+gcloud functions deploy <NOMBRE_FUNCION> --entry-point <NOMBRE_FUNCION_EJECUTABLE>--runtime python39 --trigger-http --allow-unauthenticated --memory 128MB --region us-central1 --timeout 60 --min-instances 0 --max-instances 1 --set-env-vars BASE_URL=<MICROSERVICES_API>
+```
 
 
 ## Proceso de ejecución
