@@ -2,13 +2,7 @@
 
 <img width="610" alt="Screen Shot 2022-03-06 at 11 42 02 AM" src="https://user-images.githubusercontent.com/16025512/156932778-6809635c-3bca-4a59-ac2e-06c43451cf89.png">
 
-## Como desplegar la función desde `gcloud`:
-
-```
-gcloud functions deploy funcion-estimar-fecha-finalizacion --entry-point estimar_fecha_finalizacion --runtime python39 --trigger-http --allow-unauthenticated --memory 128MB --region us-central1 --timeout 60 --min-instances 0 --max-instances 1 --set-env-vars BASE_URL=<MICROSERVICES_API>
-```
-
-## Como desplegar la función desde interfaz:
+## Por medio de la interfaz:
 
 #### 1. Dar click en crear nueva función
 <img width="1417" alt="image" src="https://user-images.githubusercontent.com/64280930/156932795-f9b17760-dd96-406b-b471-dac5034fae02.png">
@@ -31,6 +25,13 @@ gcloud functions deploy funcion-estimar-fecha-finalizacion --entry-point estimar
 
 #### 7. Validar creación de función con exito
 <img width="1532" alt="image" src="https://user-images.githubusercontent.com/64280930/156932952-fe4bbdff-4d1b-4ef7-b303-29c4ff2b2e84.png">
+
+
+## Por medio de la consola:
+
+```
+gcloud functions deploy funcion-estimar-fecha-finalizacion --entry-point estimar_fecha_finalizacion --runtime python39 --trigger-http --allow-unauthenticated --memory 128MB --region us-central1 --timeout 60 --min-instances 0 --max-instances 1 --set-env-vars BASE_URL=<MICROSERVICES_API>
+```
 
 ## Proceso de ejecución
 
