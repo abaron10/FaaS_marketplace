@@ -1,6 +1,8 @@
 
 # Estado de pago en tránsito
 
+![imagen](https://user-images.githubusercontent.com/20799474/156934077-f558a5dc-a4fc-4c99-90c5-84ea2b1d880d.png)
+
 
 ## Como desplegar la función:
 
@@ -18,10 +20,14 @@
 
 #### 5. Adición de requirements y código pertinente para la ejecución.
 
+<img width="1204" alt="Screen Shot 2022-03-06 at 12 16 17 PM" src="https://user-images.githubusercontent.com/20799474/156934101-9b249edc-1818-4fa1-b940-2d4315e9b7d4.png">
+
 #### 6. Click en implementar
 <img width="329" alt="image" src="https://user-images.githubusercontent.com/64280930/156932933-57165b2e-cacc-4a9c-8525-33f35f151475.png">
 
 #### 7. Validar creación de función con éxito
+
+<img width="649" alt="Screen Shot 2022-03-06 at 12 16 46 PM" src="https://user-images.githubusercontent.com/20799474/156934125-aa3c9222-5f45-4d76-92a8-53d6f72f02f1.png">
 
 ### Por medio de la consola:
 ```
