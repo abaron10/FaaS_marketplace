@@ -1,0 +1,33 @@
+# openapi2-functions.yaml
+swagger: '2.0'
+info:
+  title: API pedidos
+  description: API pedidos Semana 6
+  version: 1.0.0
+schemes:
+  - https
+produces:
+  - application/json
+paths:
+  /api/enviosdelosalpes/webhook:
+    get:
+      summary: Obtiene la lista de heroes
+      operationId: heroes-list
+      x-google-backend:
+        address: https://us-central1-miso-339504.cloudfunctions.net/funcion-estimar-fecha-finalizacion
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+  /api/pagosdelosalpes/webhook:
+    get:
+      summary: Webhook proveedor de pagos
+      operationId: heroes-detail
+      x-google-backend:
+        address: https://us-central1-miso-339504.cloudfunctions.net/funcion-estimar-fecha-finalizacion
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
