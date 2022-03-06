@@ -21,4 +21,4 @@ def actualizacion_estado_pedido_entregado(request=None):
     if generar_factura.status_code != 200:
         return {'msg': 'error while updating delivery'}, 404
     else:
-        return {'msg': 'succesful update'}
+        return {'msg': 'successful update'}

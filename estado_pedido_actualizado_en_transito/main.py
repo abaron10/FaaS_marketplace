@@ -9,4 +9,4 @@ def actualizacion_estado_pedido_en_transito(request=None):
     if update_delivery.status_code != 200:
         return {'msg': 'error while updating delivery'}, 404
     else:
-        return {'msg': 'succesfull update'}
+        return {'msg': 'successful update'}
