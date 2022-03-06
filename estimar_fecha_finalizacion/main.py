@@ -6,6 +6,7 @@ import uuid
 import json
 import requests
 from datetime import timedelta, date
+import ast
 
 def estimar_fecha_finalizacion(request):
     try:
@@ -13,11 +14,18 @@ def estimar_fecha_finalizacion(request):
 
         token = request.headers["x-auth-token"]
         validation_login = requests.get(f"{base_url}/sesion/{token}")
+
+        while validation_login.status_code == 500:
+            validation_login = requests.get(f"{base_url}/sesion/{token}")
+
         if validation_login.status_code != 200:
             return validation_login.json(), 401
 
-        request_args = request.args
-        order_id = request_args['id']
+        request_data = request.data
+        string_data = request_data.decode('utf8')
+        dict_data = ast.literal_eval(string_data)
+        order_id = dict_data['id']
+
         data = {
             "state": "PENDIENTE_DE_FINALIZACION"
         }
