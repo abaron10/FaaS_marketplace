@@ -25,24 +25,25 @@
 
 ### Por medio de la consola:
 ```
-gcloud functions deploy funcion-actualizacion-pedido-en-transito --entry-point actualizacion_estado_pedido_en_transito --runtime python39 --trigger-http --allow-unauthenticated --memory 128MB --region us-central1 --timeout 60 --min-instances 0 --max-instances 1
+gcloud functions deploy funcion-actualizacion-pedido-entregado --entry-point actualizacion_estado_pedido_entregado --runtime python39 --trigger-http --allow-unauthenticated --memory 128MB --region us-central1 --timeout 60 --min-instances 0 --max-instances 1
 ```
 
 ## Proceso de ejecución
 
-1. Después de que se agenda el pedido y se conocen las fechas de entre y recolección, se actualiza el estado del pedido a EN_TRANSITO
-2. Se le notifica al comprador que su pedido está en tránsito y la fecha estimada en la que va a llegar
-3. Se le notifica al vendedor que su pedido se va a recolectar y la fecha estimada de recolección
+1. Después de que se entrega el pedido, el vendedor actualiza el estado del pedido
+2. Se genera la factura correspondiente al pedido
+3. Se le notifica al vendedor que la factura se generó
 
 ## ¿Cómo ejecutar la prueba?
 
 Esta función requiere de un body para enviar por medio de un POST, para aclarar, se debe contar con un pedido existente para asignarle valor al campo orderId:
 
-La url de la función corresponde a : https://us-central1-cloud-functions-343223.cloudfunctions.net/funcion-actualizacion-pedido-en-transito
+La url de la función corresponde a: https://us-central1-cloud-functions-343223.cloudfunctions.net/funcion-actualizacion-pedido-entregado
 
 ```
 {
-  "orderId": <id of previously created order>,
+    "orderId": "336f0721-e3ab-4a9c-a094-fa443d6955a6",
+    "externalId": "d8047ced-362d-4524-8f9e-0ecaffaee75f"
 }
 ```
 En el caso de obtener una respuesta exitosa por parte de la función, se obtendrá el siguiente resultado:
