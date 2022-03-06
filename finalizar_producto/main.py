@@ -36,36 +36,36 @@ def finalizar_producto(request):
             "type": 1,
             "order_id": str(order_id)
         }
-
         notificador_response = requests.post(
             f'https://{NOTIFICATIONS_SERVER}/funcion-notificaciones-producir',
             json=notification_data
         )
 		
         if notificador_response.status_code != 200:
-            raise Exception("Error")
+            return {'message': 'error creando notificacion'}, 404
 		
         #Obtener direccion comprador
-        addr_response = requests.post(
-            f'https://{SERVER}/addresses/user/{validation_login.json()["user_id"]}'
+        idUser=validation_login.json()["user_id"]
+        addr_response = requests.get(
+            f'https://{SERVER}/addresses/user/{idUser}'
         )
         
         if addr_response.status_code != 200:
-            raise Exception("Error")
+            return {'message': 'error obteniendo direccion'}, 404
 		
         #Agendar entrega en proveedor
-        #agenda_data = {
-        #    "direccion-origen": "Cr 40 #40 - 40, Bogotá, Colombia",
-        #    "direccion-destino": addr_response.json()["address"]
-        #}
-        #update_agenda = requests.post(f'https://{INTEGRATIONS_SERVER}/envio/agendar', json=agenda_data)
+        agenda_data = {
+            "direccion-origen": "Cr 40 #40 - 40, Bogotá, Colombia",
+            "direccion-destino": addr_response.json()["address"]
+        }
+        update_agenda = requests.post(f'https://{INTEGRATIONS_SERVER}/envio/agendar', json=agenda_data)
 		
-        #if update_agenda.status_code != 200:
-        #    raise Exception("Error")
+        if update_agenda.status_code != 200:
+            return {'message': 'error agendando con el proveedor'}, 400
 
         return {
-            "message": addr_response.json()
+            "message": "Producto finalizado correctamente, se agenda entrega con el proveedor"
         }
 
     except Exception as e:
-        return "error", 400
+        return "Error en la funcion de finalizar pedido", 400
