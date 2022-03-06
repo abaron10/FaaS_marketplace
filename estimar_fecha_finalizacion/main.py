@@ -10,6 +10,12 @@ from datetime import timedelta, date
 def estimar_fecha_finalizacion(request):
     try:
         base_url = env.get_base_url()
+
+        token = request.headers["x-auth-token"]
+        validation_login = requests.get(f"{base_url}/sesion/{token}")
+        if validation_login.status_code != 200:
+            return validation_login.json(), 401
+
         request_args = request.args
         order_id = request_args['id']
         data = {
@@ -42,4 +48,5 @@ def estimar_fecha_finalizacion(request):
             "message": "Se notificará al comprador con la fecha estimada de finalización"
         }
     except Exception as e:
+        print(e)
         return "Oops, hubo un error", 400
