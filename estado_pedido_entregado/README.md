@@ -1,5 +1,6 @@
 
-# Estado de pago en tránsito
+# Estado de pago entregado
+![imagen](https://user-images.githubusercontent.com/20799474/156934152-cd09741c-edf2-4169-940e-a144c4cdeafa.png)
 
 
 ## Como desplegar la función:
@@ -17,11 +18,15 @@
 <img width="550" alt="image" src="https://user-images.githubusercontent.com/64280930/156932859-4affd51b-aa2d-4681-99d1-d11630ec349c.png">
 
 #### 5. Adición de requirements y código pertinente para la ejecución.
+<img width="1385" alt="Screen Shot 2022-03-06 at 12 18 50 PM" src="https://user-images.githubusercontent.com/20799474/156934188-6a5ab5e2-0eb1-402e-b526-d9ed17f9c3ad.png">
+
 
 #### 6. Click en implementar
 <img width="329" alt="image" src="https://user-images.githubusercontent.com/64280930/156932933-57165b2e-cacc-4a9c-8525-33f35f151475.png">
 
 #### 7. Validar creación de función con éxito
+<img width="635" alt="Screen Shot 2022-03-06 at 12 18 17 PM" src="https://user-images.githubusercontent.com/20799474/156934172-bad4e49a-b947-43f3-8325-866d6333df3c.png">
+
 
 ### Por medio de la consola:
 ```
