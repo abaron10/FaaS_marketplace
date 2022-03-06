@@ -14,7 +14,7 @@ paths:
       summary: Obtiene la lista de heroes
       operationId: heroes-list
       x-google-backend:
-        address: https://us-central1-miso-339504.cloudfunctions.net/funcion-estimar-fecha-finalizacion
+        address: https://us-central1-miso-my-first-project-339515.cloudfunctions.net/estado_pago_actualizacion 
       responses:
         '200':
           description: A successful response
@@ -25,7 +25,7 @@ paths:
       summary: Webhook proveedor de pagos
       operationId: heroes-detail
       x-google-backend:
-        address: https://us-central1-miso-339504.cloudfunctions.net/funcion-estimar-fecha-finalizacion
+        address: https://us-central1-miso-my-first-project-339515.cloudfunctions.net/estado_pago_actualizacion  
       responses:
         '200':
           description: A successful response
