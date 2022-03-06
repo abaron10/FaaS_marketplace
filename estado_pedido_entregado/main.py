@@ -2,6 +2,7 @@ from variables import SERVER, SERVER_THIRD_PARTIES, NOTIFICATIONS_SERVER
 import requests
 import time
 
+
 def actualizacion_estado_pedido_entregado(request=None):
     order_id = request.get_json()['orderId']
     url_orders = f'http://{SERVER}/orders/internal/{order_id}'
@@ -18,17 +19,14 @@ def actualizacion_estado_pedido_entregado(request=None):
     generar_factura = requests.post(url_factura, json=data, headers=headers)
 
     if generar_factura.status_code != 200:
-        time.sleep(1)
-        return actualizacion_estado_pedido_entregado(request)
+        return {'msg': 'error while generating invoice'}, 404
 
     factura_id = generar_factura.json()['id']
     url_factura_get = f'https://{SERVER_THIRD_PARTIES}/factura/obtener/{factura_id}'
     obtener_factura = requests.get(url_factura_get)
 
-
-    print(obtener_factura)
-
     while obtener_factura.status_code != 200:
+        time.sleep(1)
         obtener_factura = requests.get(url_factura_get)
         print(obtener_factura)
 
