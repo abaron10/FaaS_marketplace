@@ -10,7 +10,7 @@ produces:
   - application/json
 paths:
   /api/enviosdelosalpes/webhook:
-    get:
+    post:
       summary: Obtiene la lista de heroes
       operationId: heroes-list
       x-google-backend:
@@ -21,7 +21,7 @@ paths:
           schema:
             type: string
   /api/pagosdelosalpes/webhook:
-    get:
+    post:
       summary: Webhook proveedor de pagos
       operationId: heroes-detail
       x-google-backend:
@@ -31,3 +31,7 @@ paths:
           description: A successful response
           schema:
             type: string
+
+#gcloud api-gateway apis create miso-my-first-project-339515
+# gcloud api-gateway api-configs create miso-my-first-project-339515-api-config --api=miso-my-first-project-339515-api --openapi-spec=./api-gateway.yml
+# gcloud api-gateway gateways create miso-my-first-project-339515-gateway --api=miso-my-first-project-339515-api --api-config=miso-my-first-project-339515-api-config --location=us-central1
