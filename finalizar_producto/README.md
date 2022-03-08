@@ -30,7 +30,7 @@
 ## Por medio de la consola:
 
 ```
-gcloud functions deploy funcion-finalizar-producto --entry-point finalizar_producto --runtime python39 --trigger-http --allow-unauthenticated --memory 128MB --region us-central1 --timeout 60 --min-instances 0 --max-instances 1 --set-env-vars SERVER=<MICROSERVICES_API>
+gcloud functions deploy funcion-finalizar-producto --entry-point finalizar_producto --runtime python39 --trigger-http --allow-unauthenticated --memory 128MB --region us-central1 --timeout 60 --min-instances 0 --max-instances 1 --set-env-vars SERVER=<MICROSERVICES_API>,INTEGRATIONS_SERVER=<INTEGRATIONS_API>,NOTIFICATIONS_SERVER=<NOTIFICATIONS_API>
 ```
 
 ## Proceso de ejecución

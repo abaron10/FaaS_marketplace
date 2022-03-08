@@ -6,6 +6,7 @@ import uuid
 import json
 import requests
 import ast
+import time
 
 def finalizar_producto(request):
     try:
@@ -14,15 +15,14 @@ def finalizar_producto(request):
         request_args = ast.literal_eval(string_data)
 
         token = request.headers["x-auth-token"]
-        validation_login = requests.get(f"{SERVER}/sesion/{token}")
+        validation_login = requests.get(f"https://{SERVER}/sesion/{token}")
 
         while validation_login.status_code == 500:
-            validation_login = requests.get(f"{SERVER}/sesion/{token}")
+            validation_login = requests.get(f"https://{SERVER}/sesion/{token}")
         if validation_login.status_code != 200:
             return validation_login.json(), 401
 
         order_id = request_args['orderId']
-        print("orderId: "+order_id)
         urlOrder = f'https://{SERVER}/orders/internal/{order_id}'
         update_order = requests.post(urlOrder, data={'state': 'LISTA_PARA_DESPACHO'})
 
@@ -32,7 +32,6 @@ def finalizar_producto(request):
         # crear entrega pedido (crear agenda)
         dataS={'uuid': str(order_id)}
         seller_id = request_args['sellerId']
-        print("orderId: "+order_id +" sellerId: "+seller_id)
         urlAgenda = f'https://{SERVER}/agenda/sellers/{seller_id}'
         update_agenda = requests.post(urlAgenda, json=dataS)
         
@@ -69,8 +68,10 @@ def finalizar_producto(request):
         }
         update_agenda = requests.post(f'https://{INTEGRATIONS_SERVER}/envio/agendar', json=agenda_data)
 		
-        if update_agenda.status_code != 200:
-            return {'message': 'error agendando con el proveedor'}, 400
+        # Reintentos servicio de agenda con el proveedor
+        while update_agenda.status_code == 500:
+            time.sleep(1)
+            update_agenda = requests.post(f'https://{INTEGRATIONS_SERVER}/envio/agendar', json=agenda_data)
 
         return {
             "message": "Producto finalizado correctamente, se agenda entrega con el proveedor"
